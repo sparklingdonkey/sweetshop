@@ -31,10 +31,11 @@ sap.ui.define([
 		formatter: formatter,
 
 		onInit: function () {
+			this.oBundle = this.getResourceBundle();
 			var oModel = new JSONModel(
 				{
-					SelectedPayment: "Credit Card",
-					SelectedDeliveryMethod: "Standard Delivery",
+					SelectedPayment: this.oBundle.getText("creditCard"),
+					SelectedDeliveryMethod: this.oBundle.getText("standardDelivery"),
 					DifferentDeliveryAddress: false,
 					CashOnDelivery: {
 						FirstName: "",
@@ -133,13 +134,13 @@ sap.ui.define([
 			var selectedKey = this.getModel().getProperty("/SelectedPayment");
 			var oElement = this.byId("paymentTypeStep");
 			switch (selectedKey) {
-				case "Bank Transfer":
+				case this.oBundle.getText("bankTransfer"):
 					oElement.setNextStep(this.byId("bankAccountStep"));
 					break;
-				case "Cash on Delivery":
+				case this.oBundle.getText("cashOnDelivery"):
 					oElement.setNextStep(this.byId("cashOnDeliveryStep"));
 					break;
-				case "Credit Card":
+				case this.oBundle.getText("creditCard"):
 				default:
 					oElement.setNextStep(this.byId("creditCardStep"));
 					break;
@@ -385,7 +386,7 @@ sap.ui.define([
 						this.post("http://127.0.0.1:8080/api/orders", {
 							body: JSON.stringify({products: aProducts, productsQuantity: aQuantity, paymentInfo: JSON.stringify(oModelData)})
 						});
-						oModelData.SelectedPayment = "Credit Card";
+						oModelData.SelectedPayment = this.oBundle.getText("creditCard");
 						oModelData.SelectedDeliveryMethod = "Standard Delivery";
 						oModelData.DifferentDeliveryAddress = false;
 						oModelData.CashOnDelivery = {};

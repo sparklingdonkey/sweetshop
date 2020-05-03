@@ -106,15 +106,15 @@
 										<items>
 											<SegmentedButtonItem
 												id="payViaCC"
-												key="Credit Card"
+												key="{i18n>creditCard}"
 												text="{i18n>checkoutPaymentCreditCard}"/>
 											<SegmentedButtonItem
 												id="payViaBank"
-												key="Bank Transfer"
+												key="{i18n>bankTransfer}"
 												text="{i18n>checkoutPaymentBankTransfer}"/>
 											<SegmentedButtonItem
 												id="payViaCOD"
-												key="Cash on Delivery"
+												key="{i18n>cashOnDelivery}"
 												text="{i18n>checkoutPaymentCod}"/>
 										</items>
 									</SegmentedButton>
@@ -640,11 +640,11 @@
 										selectedKey="{/SelectedDeliveryMethod}">
 										<items>
 											<SegmentedButtonItem
-												key="Standard Delivery"
+												key="{i18n>standardDelivery}"
 												text="{i18n>checkoutDeliveryTypeStandard}"/>
 											<SegmentedButtonItem
 												id="expressDelivery"
-												key="Express Delivery"
+												key="{i18n>expressDelivery}"
 												text="{i18n>checkoutDeliveryTypeExpress}"/>
 										</items>
 									</SegmentedButton>
@@ -791,7 +791,7 @@
 					</form:SimpleForm>
 
 					<form:SimpleForm
-							visible="{= ${/SelectedPayment}==='Credit Card' ? true : false}"
+							visible="{= ${/SelectedPayment} === ${i18n>creditCard} ? true : false}"
 							editable="false"
 							layout="ResponsiveGridLayout"
 							ariaLabelledBy="creditCardPaymentTitle">
@@ -828,7 +828,7 @@
 					</form:SimpleForm>
 
 					<form:SimpleForm
-						visible="{= ${/SelectedPayment}==='Bank Transfer' ? true : false}"
+						visible="{= ${/SelectedPayment}===${i18n>bankTransfer} ? true : false}"
 						title="{i18n>checkoutSummaryTitle3bt}"
 						editable="false"
 						layout="ResponsiveGridLayout">
@@ -848,7 +848,7 @@
 						</form:content>
 					</form:SimpleForm>
 					<form:SimpleForm
-						visible="{= ${/SelectedPayment}==='Cash on Delivery' ? true : false}"
+						visible="{= ${/SelectedPayment}===${i18n>cashOnDeliver} ? true : false}"
 						editable="false"
 						layout="ResponsiveGridLayout"
 						ariaLabelledBy="cashOnDeliveryTitle">

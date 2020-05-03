@@ -145,8 +145,7 @@
 										path: '/CreditCard/Name',
 										type: 'sap.ui.model.type.String',
 										constraints: {
-											minLength: 3,
-											search: '^[a-zA-Z]+[\\s]?[a-zA-Z]+$'
+											minLength: 3
 										}
 									}"
 									change="checkCreditCardStep">
@@ -407,8 +406,7 @@
 										path: '/InvoiceAddress/Address',
 										type: 'sap.ui.model.type.String',
 										constraints: {
-											minLength: 4,
-											search: '^[a-zA-Z-]+\\.?\\s?[0-9a-zA-Z\\s]*$'
+											minLength: 4
 										}
 									}"
 									change="checkInvoiceStep">
@@ -431,8 +429,7 @@
 										path: '/InvoiceAddress/City',
 										type: 'sap.ui.model.type.String',
 										constraints: {
-											minLength: 3,
-											search: '^[a-zA-Z\\s]+$'
+											minLength: 3
 										}
 									}"
 									change="checkInvoiceStep">
@@ -479,8 +476,7 @@
 										path: '/InvoiceAddress/Country',
 										type: 'sap.ui.model.type.String',
 										constraints: {
-											minLength: 2,
-											search: '^[a-zA-Z]+$'
+											minLength: 2
 										}
 									}"
 									change="checkInvoiceStep">
@@ -530,8 +526,7 @@
 										path: '/DeliveryAddress/Address',
 										type: 'sap.ui.model.type.String',
 										constraints: {
-											minLength: 4,
-											search: '^[a-zA-Z-]+\\.?\\s?[0-9a-zA-Z\\s]*$'
+											minLength: 4
 										}
 									}"
 									change="checkDeliveryAddressStep">
@@ -554,8 +549,7 @@
 										path: '/DeliveryAddress/City',
 										type: 'sap.ui.model.type.String',
 										constraints: {
-											minLength: 3,
-											search: '^[a-zA-Z\\s]+$'
+											minLength: 3
 										}
 									}"
 									change="checkDeliveryAddressStep">
@@ -602,8 +596,7 @@
 										path: '/DeliveryAddress/Country',
 										type: 'sap.ui.model.type.String',
 										constraints: {
-											minLength: 2,
-											search: '^[a-zA-Z]+$'
+											minLength: 2
 										}
 									}"
 									change="checkDeliveryAddressStep">
@@ -718,7 +711,7 @@
 										intro="{cartProducts>Quantity} x"
 										icon="{
 											path : 'cartProducts>picture',
-											formatter : '.formatter.picture'
+											formatter : '.formatter.pictureUrl'
 											}"
 										title="{cartProducts>title}"
 										number="{
@@ -848,7 +841,7 @@
 						</form:content>
 					</form:SimpleForm>
 					<form:SimpleForm
-						visible="{= ${/SelectedPayment}===${i18n>cashOnDeliver} ? true : false}"
+						visible="{= ${/SelectedPayment}===${i18n>cashOnDelivery} ? true : false}"
 						editable="false"
 						layout="ResponsiveGridLayout"
 						ariaLabelledBy="cashOnDeliveryTitle">

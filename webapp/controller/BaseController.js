@@ -6,7 +6,7 @@ sap.ui.define([
 ], function(Controller, UIComponent, History, cart) {
 	"use strict";
 
-	return Controller.extend("sap.ui.demo.cart.controller.BaseController", {
+	return Controller.extend("cart.controller.BaseController", {
 		cart: cart,
 		/**
 		 * Convenience method for accessing the router.

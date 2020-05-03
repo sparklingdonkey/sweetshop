@@ -6,10 +6,10 @@ sap.ui.define([
 	"use strict";
 
 	var oResourceModel = new ResourceModel({
-		bundleName: "sap.ui.demo.cart.i18n.i18n"
+		bundleName: "cart.i18n.i18n"
 	});
 
-	return String.extend("sap.ui.demo.cart.model.EmailType", {
+	return String.extend("cart.model.EmailType", {
 
 		/**
 		 * Validates the value to be parsed

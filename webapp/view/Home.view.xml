@@ -66,7 +66,7 @@
 							path : 'Products>price',
 							formatter : '.formatter.price'
 						}"
-						numberUnit="EUR"
+						numberUnit="{i18n>currency}"
 						press=".onProductListItemPress"
 						iconDensityAware="false">
 						<attributes>
@@ -74,8 +74,14 @@
 						</attributes>
 						<firstStatus>
 							<ObjectStatus
-								text="Available"
-								state="Success"/>
+								text="{
+									path : 'Products>available',
+									formatter : '.formatter.statusText'
+								}"
+								state="{
+									path : 'Products>available',
+									formatter : '.formatter.statusState'
+								}"/>
 						</firstStatus>
 					</ObjectListItem>
 				</items>
@@ -102,7 +108,6 @@
 						<Button
 							icon="sap-icon://add"
 							visible="{Login>/admin}"
-							tooltip="Enable / Disable Custom Context Menu"
 							press="onCategoryAddPress" />
 					</OverflowToolbar>
 				</headerToolbar>
@@ -116,7 +121,7 @@
 							formatter : '.formatter.catCounter'
 						}"
 						detailPress=".onCategoryDetailPress"
-						tooltip="{i18n>openCategoryProducts} {CategoryName}">
+						tooltip="{i18n>openCategoryProducts}">
 						<customData>
 							<core:CustomData
 								key="id"

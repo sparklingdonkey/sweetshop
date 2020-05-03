@@ -39,7 +39,7 @@
 					text="{
 						path : 'cartProducts>/cartEntries',
 						formatter : '.formatter.totalPrice'
-					} BYN"
+					} {i18n>currency}"
 					class="sapUiTinyMarginBegin"/>
 				<ToolbarSpacer/>
 				<Button
@@ -91,7 +91,7 @@
 							path : 'cartProducts>price',
 							formatter : '.formatter.price'
 						}"
-						numberUnit="BYN"
+						numberUnit="{i18n>currency}"
 						press=".onEntryListPress"
 						iconDensityAware="false">
 						<attributes>
@@ -139,7 +139,7 @@
 							path : 'cartProducts>Price',
 							formatter : '.formatter.price'
 						}"
-						numberUnit="BYN"
+						numberUnit="{i18n>currency}"
 						press=".onEntryListPress"
 						iconDensityAware="false">
 						<attributes>

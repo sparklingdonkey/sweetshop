@@ -72,7 +72,7 @@ sap.ui.define([
 				notInDelete: bInDelete,
 				listMode: (bInDelete ? sPhoneMode : "Delete"),
 				listItemType: (bInDelete ? sPhoneType : "Inactive"),
-				pageTitle: (bInDelete ? oBundle.getText("appTitle") : oBundle.getText("cartTitleEdit"))
+				pageTitle: (bInDelete ? oBundle.getText("cartTitle") : oBundle.getText("cartTitleEdit"))
 			});
 		},
 

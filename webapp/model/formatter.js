@@ -58,14 +58,9 @@ sap.ui.define([
 		 */
 		statusText: function (bStatus) {
 			var oBundle = this.getResourceBundle();
-
-			// var mStatusText = {
-			// 	"A": oBundle.getText("statusA"),
-			// 	"O": oBundle.getText("statusO"),
-			// 	"D": oBundle.getText("statusD")
-			// };
+			
 			console.log(bStatus)
-			return bStatus ? "Available" : "Out of Stock";
+			return bStatus ? oBundle.getText("statusA") : oBundle.getText("statusO");
 		},
 
 		/**

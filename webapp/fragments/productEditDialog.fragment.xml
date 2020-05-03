@@ -92,7 +92,7 @@
 			        width="100%" />    
 
                         <Label
-                                text="{i18n>productheight}"
+                                text="{i18n>productHeight}"
                                 required="true"
                                 labelFor="heightInput" />	
                         <Input 

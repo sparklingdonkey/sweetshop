@@ -11,7 +11,7 @@
 		<content>
             <List
 				id="orderList"
-				noDataText="No products"
+				noDataText="{i18n>noProducts}"
 				items="{
 					path : 'Order>/products',
 					sorter : {
@@ -31,7 +31,7 @@
 							path : 'Order>totalPrice',
 							formatter : '.formatter.price'
 						}"
-						numberUnit="BYN"
+						numberUnit="{i18n>currency}"
 						press=".onEntryListPress"
 						iconDensityAware="false">
 						<firstStatus>
@@ -52,17 +52,17 @@
                 editable="false"
                 layout="ResponsiveGridLayout">
                 <form:content>
-                    <Label text="Payment type"/>
+                    <Label text="{i18n>checkoutPaymentTitle}"/>
                     <Text text="{Order>/paymentInfo/SelectedPayment}"/>
-                    <Label text="Delivery Method"/>
+                    <Label text="{i18n>checkoutDeliveryTypeTitle}"/>
                     <Text text="{Order>/paymentInfo/SelectedDeliveryMethod}"/>
-                    <Label text="Adress"/>
+                    <Label text="{i18n>checkoutInvoiceAddress}"/>
                     <Text text="{Order>/paymentInfo/InvoiceAddress/Address}"/>
-                    <Label text="City"/>
+                    <Label text="{i18n>checkoutInvoiceAddressCity}"/>
                     <Text text="{Order>/paymentInfo/InvoiceAddress/City}"/>
-                    <Label text="Country"/>
+                    <Label text="{i18n>checkoutInvoiceAddressCountry}"/>
                     <Text text="{Order>/paymentInfo/InvoiceAddress/Country}"/>
-                    <Label text="ZipCode"/>
+                    <Label text="{i18n>checkoutInvoiceAddressZip}"/>
                     <Text text="{Order>/paymentInfo/InvoiceAddress/ZipCode}"/>
                 </form:content>
             </form:SimpleForm>
@@ -71,14 +71,10 @@
 			<Toolbar>
 				<ToolbarSpacer/>
 				<Button
-					text="Delete"
+					text="{i18n>deleteOrder}"
 					type="Reject"
 					visible="{Login>/admin}"
 					press=".onOrderDeletePress" />
-				<Button
-					text="Approve"
-					type="Emphasized"
-					press=".onApprove" />
 			</Toolbar>
 		</footer>
 	</Page>

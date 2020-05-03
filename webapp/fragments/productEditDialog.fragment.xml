@@ -31,6 +31,7 @@
                         <TextArea 
                                 id="descriptionArea"
                                 rows="8" 
+                                maxLength="400"
                                 placeholder="{i18n>productDescriptionText}"
                                 value="{Product>/description}"
                                 width="100%" />  

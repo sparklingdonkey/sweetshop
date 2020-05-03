@@ -26,6 +26,7 @@
                                 id="categoryDescriptionInput"
 			        enabled="true" 
 			        rows="8" 
+                                maxLength="400"
 				placeholder="{i18n>categoryDescriptionText}"
 			        value="{Category>/description}"
 			        width="100%" />     		

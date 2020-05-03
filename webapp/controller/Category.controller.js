@@ -49,6 +49,12 @@ sap.ui.define([
 			if (!this.getView().getModel("Categories").getData().length) {
 				this.loadCategories().then(function(aData) {
 					that.setCategoriesModel(aData);
+					var aCategory = aData.filter(function(oCategory) {
+						return oCategory._id === sId;
+					});
+					if (aCategory.length) {
+						that.byId("page").setTitle(aCategory[0].title);
+					}
 				}, function() {
 					MessageToast.show("Categories error");
 				})
@@ -59,9 +65,8 @@ sap.ui.define([
 					that.setProductsModel(aData);
 					var oView = that.getView();
 					var oProductList = oView.byId("productList");
-	
+					
 					var oBinding = oProductList.getBinding("items");
-					debugger;
 					if (oBinding) {
 						var oFilter = new Filter("category/_id", FilterOperator.EQ, sId);
 						oBinding.filter([oFilter]);

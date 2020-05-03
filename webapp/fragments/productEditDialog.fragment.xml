@@ -30,14 +30,13 @@
                                 labelFor="descriptionArea" />
                         <TextArea 
                                 id="descriptionArea"
-			                    rows="8" 
-				            placeholder="{i18n>productDescriptionText}"
-			                    value="{Product>/description}"
-			                    width="100%" />  
+                                rows="8" 
+                                placeholder="{i18n>productDescriptionText}"
+                                value="{Product>/description}"
+                                width="100%" />  
                         <VBox>
                             <Label
                                     text="{i18n>productPicture}"
-                                    required="true"
                                     labelFor="fileUploader" />
                                 <HBox>
                                 <u:FileUploader
@@ -64,7 +63,7 @@
                                     selectedKey="{Product>/category}"
                                     items="{
                                         path: 'Categories>/',
-                                        sorter: { path: 'Name' }
+                                        sorter: { path: 'title' }
                                     }">
                                     <core:Item key="{Categories>_id}" text="{Categories>title}" />
                                 </Select> 

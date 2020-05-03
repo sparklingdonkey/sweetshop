@@ -30,12 +30,11 @@ sap.ui.define([
 			});
 			this.getView().setModel(oViewModel, "view");
 			var oComponent = this.getOwnerComponent();
+			this.oBundle = this.getResourceBundle();
 			this._oRouter = oComponent.getRouter();
 			this._oRouter.getRoute("category").attachMatched(this._loadProducts, this);
 			this._oRouter.getRoute("productCart").attachMatched(this._loadProducts, this);
 			this._oRouter.getRoute("product").attachMatched(this._loadProducts, this);
-			this._oRouter.getRoute("comparison").attachMatched(this._loadProducts, this);
-			this._oRouter.getRoute("comparisonCart").attachMatched(this._loadProducts, this);
 
 		},
 
@@ -121,9 +120,9 @@ sap.ui.define([
 			var oProduct = oModel.getData();
 			var that = this;
 			var reader = new FileReader();
-		    
+			var data =	that.getModel("Product").getData();
+			
 			reader.onload = function(e) {
-				var data =	that.getModel("Product").getData();
 				data.picture = {
 					"picture": reader.result,
 					"fileName": that.uploadedExcelFile.name,
@@ -131,7 +130,7 @@ sap.ui.define([
 				}
 				if (data._id) {
 					that.put("http://127.0.0.1:8080/api/products", {body: JSON.stringify({
-						product: data
+							product: data
 						})}).then(function() {
 						 that.loadProducts().then(function(aData) {
 							 that.byId("productEditDialog").close();
@@ -145,7 +144,7 @@ sap.ui.define([
 					});
 				} else {
 					that.post("http://127.0.0.1:8080/api/products", {body: JSON.stringify({
-						product: data
+							product: data
 						})}).then(function() {
 						 that.loadProducts().then(function(aData) {
 							 that.byId("productEditDialog").close();
@@ -156,18 +155,29 @@ sap.ui.define([
 			};
 			
 			if (!oProduct.category) {
-				MessageToast.show("Sorry, an unexpected error occured. Please, refresh a page");
+				if (this.getModel("Categories").getData().length()) {
+					var sKey = this.byId("categorySelect").getSelectedKey();
+					if (!sKey) {
+						MessageToast.show(this.oBundle.getText("criticalUnexpectedError"));
+						return false;
+					} else {
+						oProduct.category = sKey;
+					}
+				} else {
+					MessageToast.show(this.oBundle.getText("noCategories"));
+					return false;
+				}
 			}
+
 			if (oProduct.title && oProduct.category && oProduct.description && oProduct.price 
 						&& oProduct.attributes.width && oProduct.attributes.height && oProduct.attributes.length
 						&& oProduct.attributes.weight) {
 				if (this.uploadedExcelFile){
 					reader.readAsBinaryString(this.uploadedExcelFile);
 				} else {
-					var data =	this.getModel("Product").getData();
 					if (data._id) {
 						that.put("http://127.0.0.1:8080/api/products", {body: JSON.stringify({
-							product: data
+								product: data
 							})}).then(function() {
 							that.loadProducts().then(function(aData) {
 								that.byId("productEditDialog").close();
@@ -181,7 +191,7 @@ sap.ui.define([
 						});
 					} else {
 						that.post("http://127.0.0.1:8080/api/products", {body: JSON.stringify({
-							product: data
+								product: data
 							})}).then(function() {
 							that.loadProducts().then(function(aData) {
 								that.byId("productEditDialog").close();
@@ -191,7 +201,8 @@ sap.ui.define([
 					}
 				}
 			} else {
-				MessageToast.show("Fill all required fields");
+				MessageToast.show(this.oBundle.getText("fillAllRequiredFields"));
+				return false;
 			}
 		},
 

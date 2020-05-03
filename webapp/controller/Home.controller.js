@@ -35,7 +35,7 @@ sap.ui.define([
 				this.loadCategories().then(function(aData) {
 					that.setCategoriesModel(aData);
 				}, function() {
-					MessageToast.show("Categories error");
+					MessageToast.show(that.oBundle.getText("categoriesLoadError"));
 				})
 				
 			}
@@ -44,7 +44,7 @@ sap.ui.define([
 				this.loadProducts().then(function(aData) {
 					that.setProductsModel(aData);
 				}, function() {
-					MessageToast.show("Products error");
+					MessageToast.show(that.oBundle.getText("productsLoadError"));
 				});
 			}
 		},
@@ -133,12 +133,12 @@ sap.ui.define([
 								that.loadCategories().then(function(aData) {
 									that.setCategoriesModel(aData);
 								}, function() {
-									MessageToast.show("Categories error");
+									MessageToast.show(that.oBundle.getText("categoriesLoadError"));
 								})
 								that.loadProducts().then(function(aData) {
 									that.setProductsModel(aData);
 								}, function() {
-									MessageToast.show("Products error");
+									MessageToast.show(that.oBundle.getText("productsLoadError"));
 								})
 							}
 						});
@@ -153,12 +153,12 @@ sap.ui.define([
 								that.loadCategories().then(function(aData) {
 									that.setCategoriesModel(aData);
 								}, function() {
-									MessageToast.show("Categories error");
+									MessageToast.show(that.oBundle.getText("categoriesLoadError"));
 								})
 								that.loadProducts().then(function(aData) {
 									that.setProductsModel(aData);
 								}, function() {
-									MessageToast.show("Products error");
+									MessageToast.show(that.oBundle.getText("productsLoadError"));
 								})
 							}
 						});
@@ -187,12 +187,12 @@ sap.ui.define([
 							that.loadCategories().then(function(aData) {
 								that.setCategoriesModel(aData);
 							}, function() {
-								MessageToast.show("Categories error");
+								MessageToast.show(that.oBundle.getText("categoriesLoadError"));
 							})
 							that.loadProducts().then(function(aData) {
 								that.setProductsModel(aData);
 							}, function() {
-								MessageToast.show("Products error");
+								MessageToast.show(that.oBundle.getText("productsLoadError"));
 							})
 						});
 					}

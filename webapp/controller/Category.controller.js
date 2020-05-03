@@ -47,7 +47,7 @@ sap.ui.define([
 						that.byId("page").setTitle(aCategory[0].title);
 					}
 				}, function() {
-					MessageToast.show("Categories error");
+					MessageToast.show(that.oBundle.getText("categoriesLoadError"));
 				})
 			}
 
@@ -63,7 +63,7 @@ sap.ui.define([
 						oBinding.filter([oFilter]);
 					}
 				}, function() {
-					MessageToast.show("Categories error");
+					MessageToast.show(that.oBundle.getText("productsLoadError"));
 				});
 			} else {
 				var oView = this.getView();

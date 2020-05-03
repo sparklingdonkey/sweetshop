@@ -48,7 +48,7 @@
 			<Toolbar>
 				<ToolbarSpacer/>
 				<Button
-					text="Delete"
+					text="{i18n>deleteProduct}"
 					type="Reject"
 					visible="{Login>/admin}"
 					press=".onProductDeletePress" />
@@ -66,20 +66,26 @@
 					path : 'ProductDisplay>/price',
 					formatter : '.formatter.price'
 				}"
-				numberUnit="BYN">
+				numberUnit="{i18n>currency}">
 				<attributes>
 					<ObjectAttribute
-						title="Category"
+						title="{i18n>category}"
 						text="{ProductDisplay>/category/title}"/>
 					<ObjectAttribute
 						title="{i18n>productDescriptionAttributeText}"
 						text="{ProductDisplay>/description}"/>
 					<ObjectAttribute
 						title="{i18n>productWeightAttributeText}"
-						text="{ProductDisplay>/attributes/weight} KG"/>
+						text="{ProductDisplay>/attributes/weight} {i18n>weightMeasure}"/>
 					<ObjectAttribute
-						title="{i18n>productMeasuresAttributeText}"
-						text="{ProductDisplay>/attributes/length} cm, {ProductDisplay>/attributes/height} cm, {ProductDisplay>/attributes/width} cm"/>
+						title="{i18n>productHeightAttributeText}"
+						text="{ProductDisplay>/attributes/height} {i18n>heightMeasure}"/>
+					<ObjectAttribute
+						title="{i18n>productWidthAttributeText}"
+						text="{ProductDisplay>/attributes/width} {i18n>heightMeasure}"/>
+					<ObjectAttribute
+						title="{i18n>productLengthAttributeText}"
+						text="{ProductDisplay>/attributes/length} {i18n>heightMeasure}"/>
 				</attributes>
 				<statuses>
 					<ObjectStatus
@@ -108,8 +114,7 @@
 						<LightBox id="lightBox">
 							<imageContent>
 								<LightBoxItem
-									imageSrc="{path : 'ProductDisplay>/picture', formatter : '.formatter.pictureUrl'}"
-									title="{Name}"/>
+									imageSrc="{path : 'ProductDisplay>/picture', formatter : '.formatter.pictureUrl'}" />
 							</imageContent>
 						</LightBox>
 					</detailBox>

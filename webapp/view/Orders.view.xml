@@ -4,7 +4,7 @@
 	xmlns:mvc="sap.ui.core.mvc">
 	<Page
 		id="page"
-		title="Orders"
+		title="{i18n>orders}"
 		backgroundDesign="Solid"
 		showNavButton="true"
 		navButtonPress=".onBack">
@@ -23,7 +23,7 @@
 						type="{cfg>/listItemType}"
 						title="{Orders>_id}"
 						number="{Orders>totalPrice}"
-						numberUnit="BYN"
+						numberUnit="{i18n>currency}"
 						press=".onEntryListPress"
 						iconDensityAware="false">
 					</ObjectListItem>

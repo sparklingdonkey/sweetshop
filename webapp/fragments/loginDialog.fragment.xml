@@ -9,21 +9,21 @@
             contentHeight="auto"
             draggable="true"
             titleAlignment="Center"
-            title="Profile">
-		<content>
+            title="{i18n>profile}">
+		<content >
                         <Label
-                                text="User name"
+                                text="{i18n>userName}"
                                 required="true"
                                 labelFor="emailInput" />
 			<Input 
                                 id="emailInput"
                                 enabled="{= !${Login>/token}}"
 			        rows="12" 
-                                placeholder="Enter user name ..."
+                                placeholder="{i18n>userNameText}"
 			        value="{Login>/login}"
 			        width="100%" />    
                         <Label
-                                text="Password"
+                                text="{i18n>password}"
                                 required="true"
                                 labelFor="passwordInput" />
                         <Input 
@@ -31,11 +31,11 @@
 			        enabled="true" 
 			        rows="12" 
                                 type="Password"
-				placeholder="Enter password ..."
+				placeholder="{i18n>passwordText}"
 			        value="{Login>/password}"
 			        width="100%" />  
                         <Label
-                                text="New password"
+                                text="{i18n>newPassword}"
                                 required="true"
                                 visible="{= !!${Login>/token}}"
                                 labelFor="newPasswordInput" />
@@ -45,7 +45,7 @@
 			        rows="12" 
                                 type="Password"
                                 visible="{= !!${Login>/token}}"
-				placeholder="Enter new password ..."
+				placeholder="{i18n>newPasswordText}"
 			        value="{Login>/new_password}"
 			        width="100%" />          		
         </content>
@@ -53,19 +53,19 @@
             <Button 
                     press="onLoginButtonPress"
                     visible="{= !${Login>/token}}"
-                    text="Login" />
+                    text="{i18n>login}" />
             <Button 
                     press="onLogoutButtonPress"
                     visible="{= !!${Login>/token}}"
-                    text="Logout" /> 
+                    text="{i18n>logout}" /> 
             <Button 
                     press="onRegisterButtonPress"
                     visible="{= !${Login>/token}}"
-                    text="Register" />
+                    text="{i18n>register}" />
             <Button 
                     press="onChangePasswordButtonPress"
                     visible="{= !!${Login>/token}}"
-                    text="Change password" />
+                    text="{i18n>changePassword}" />
         </buttons>
     </Dialog>
 </core:FragmentDefinition>

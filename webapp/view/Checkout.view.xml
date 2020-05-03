@@ -61,7 +61,7 @@
 												path : 'cartProducts>price',
 												formatter : '.formatter.price'
 											}"
-											numberUnit="BYN"
+											numberUnit="{i18n>currency}"
 											press=".onEntryListPress"
 											iconDensityAware="false">
 											<firstStatus>
@@ -84,7 +84,7 @@
 											text="{
 												path : 'cartProducts>/cartEntries',
 												formatter : '.formatter.totalPrice'
-											} BYN"/>
+											} {i18n>currency}"/>
 									</contentRight>
 								</Bar>
 							</WizardStep>
@@ -94,9 +94,6 @@
 								subsequentSteps="creditCardStep, bankAccountStep, cashOnDeliveryStep"
 								complete="goToPaymentStep"
 								icon="sap-icon://money-bills">
-								<Text
-									class="sapUiSmallMarginBottom"
-									text="{i18n>checkoutPaymentText}"/>
 							<HBox
 								renderType="Bare"
 								alignItems="Center"
@@ -380,13 +377,14 @@
 							<form:SimpleForm
 								layout="ResponsiveGridLayout"
 								editable="true">
-								<Label text="{i18n>checkoutInvoiceAddressDifferentDeliveryAddress}">
+								<Label visible="false" text="{i18n>checkoutInvoiceAddressDifferentDeliveryAddress}">
 									<layoutData>
 										<layout:GridData span="XL4 L4 M4 S12"/>
 									</layoutData>
 								</Label>
 								<CheckBox
 									id="differentDeliveryAddress"
+									visible="false"
 									enabled="false"
 									selected="{/DifferentDeliveryAddress}"
 									select="setDifferentDeliveryAddress">
@@ -632,9 +630,6 @@
 								id="deliveryTypeStep"
 								title="{i18n>checkoutDeliveryTypeTitle}"
 								icon="sap-icon://insurance-car">
-								<Text
-									class="sapUiSmallMarginBottom"
-									text="{i18n>checkoutDeliveryTypeText}"/>
 							<HBox
 								renderType="Bare"
 								alignItems="Center"
@@ -730,7 +725,7 @@
 											path : 'cartProducts>price',
 											formatter : '.formatter.price'
 										}"
-										numberUnit="BYN"
+										numberUnit="{i18n>currency}"
 										press=".onEntryListPress"
 										iconDensityAware="false">
 										<firstStatus>

@@ -10,33 +10,33 @@
             contentHeight="auto"
             draggable="true"
             titleAlignment="Center"
-            title="Product">
+            title="{i18n>productAction}">
 		<content>   
                         <VBox>
                             <Label
-                                    text="Title"
+                                    text="{i18n>productName}"
                                     required="true"
                                     labelFor="titleInput" />
                             <Input 
                                     id="titleInput"
                                     rows="12" 
-                                    placeholder="Enter product title ..."
+                                    placeholder="{i18n>productNameText}"
                                     value="{Product>/title}"
                                     width="100%" />   
                         </VBox> 
                         <Label
-                                text="Descriptipn"
+                                text="{i18n>productDescription}"
                                 required="true"
                                 labelFor="descriptionArea" />
                         <TextArea 
                                 id="descriptionArea"
 			                    rows="8" 
-				                placeholder="Enter description ..."
+				            placeholder="{i18n>productDescriptionText}"
 			                    value="{Product>/description}"
 			                    width="100%" />  
                         <VBox>
                             <Label
-                                    text="Picture"
+                                    text="{i18n>productPicture}"
                                     required="true"
                                     labelFor="fileUploader" />
                                 <HBox>
@@ -44,10 +44,9 @@
                                         id="fileUploader"
                                         name="myFileUpload"
                                         width="100%"
-                                        change="onUploadPathChange"
-                                        tooltip="Upload your file to the local server" />
+                                        change="onUploadPathChange" />
                                         <Button
-                                                text="Remove current"
+                                                text="{i18n>productRemovePicture}"
                                                 enabled="{= !!${Product>/picture} &amp;&amp; ${Product>/picture} !== 'REMOVE' }"
                                                 press="handleRemovePress"/>
                                 </HBox>	
@@ -55,7 +54,7 @@
                         
                         <VBox>
                             <Label
-                                    text="category"
+                                    text="{i18n>productCategory}"
                                     required="true"
                                     labelFor="categorySelect" />	
                                 <Select
@@ -71,57 +70,62 @@
                                 </Select> 
                         </VBox>
                         <Label
-                                text="price"
+                                text="{i18n>productPrice}"
                                 required="true"
                                 labelFor="priceInput" />	
                         <Input 
                                 id="priceInput"
-                                placeholder="Enter product price ..."
-			                    value="{Product>/price}"
-			                    width="100%" /> 
+                                placeholder="{i18n>productPriceText}"
+                                type="Number"
+			        value="{Product>/price}"
+			        width="100%" /> 
 
                         <Label
-                                text="width"
+                                text="{i18n>productWidth}"
                                 required="true"
                                 labelFor="widthInput" />	
                         <Input 
                                 id="widthInput"
-                                placeholder="Enter product width ..."
-			                    value="{Product>/attributes/width}"
-			                    width="100%" />    
+                                type="Number"
+                                placeholder="{i18n>productWidthText}"
+			        value="{Product>/attributes/width}"
+			        width="100%" />    
 
                         <Label
-                                text="height"
+                                text="{i18n>productheight}"
                                 required="true"
                                 labelFor="heightInput" />	
                         <Input 
                                 id="heightInput"
-                                placeholder="Enter product height ..."
-			                    value="{Product>/attributes/height}"
-			                    width="100%" />
+                                type="Number"
+                                placeholder="{i18n>productHeightText}"
+			        value="{Product>/attributes/height}"
+			        width="100%" />
 
                         <Label
-                                text="length"
+                                text="{i18n>productLength}"
                                 required="true"
                                 labelFor="lengthInput" />	
                         <Input 
                                 id="lengthInput"
-                                placeholder="Enter product length ..."
-			                    value="{Product>/attributes/length}"
-			                    width="100%" />
+                                placeholder="{i18n>productLengthText}"
+                                type="Number"
+			        value="{Product>/attributes/length}"
+			        width="100%" />
                         
                         <Label
-                                text="weight"
+                                text="{i18n>productWeight}"
                                 required="true"
                                 labelFor="weightInput" />	
                         <Input 
                                 id="weightInput"
-                                placeholder="Enter product weight ..."
-			                    value="{Product>/attributes/weight}"
-			                    width="100%" />
+                                type="Number"
+                                placeholder="{i18n>productWeightText}"
+			        value="{Product>/attributes/weight}"
+			        width="100%" />
 
                          <Label
-                                text="Available"
+                                text="{i18n>productAvailable}"
                                 required="true"
                                 labelFor="availableSelect" />	
                         <Select
@@ -134,12 +138,12 @@
                                         sorter: { path: 'title' }
                                     }">
                                     <core:Item key="{Available>key}" text="{Available>title}" />
-                                </Select> 
+                        </Select> 
         </content>
         <buttons>
             <Button 
                     press=".onProductSaveButtonPress"
-                    text="Save" />
+                    text="{i18n>productSave}" />
         </buttons>
     </Dialog>
 </core:FragmentDefinition>

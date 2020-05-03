@@ -18,7 +18,7 @@ sap.ui.define([
 				smallScreenMode : true
 			});
 			this.setModel(oViewModel, "appView");
-
+			this.oBundle = this.getResourceBundle();
 			fnSetAppNotBusy = function() {
 				oViewModel.setProperty("/busy", false);
 				oViewModel.setProperty("/delay", iOriginalBusyDelay);
@@ -27,7 +27,7 @@ sap.ui.define([
 			this.getView().setModel(new JSONModel({login: "", password: "", token: "", new_password: "", id: "", admin: false}), "Login");
 			this.getView().setModel(new JSONModel([]), "Categories");
 			this.getView().setModel(new JSONModel({title: "", description: "", id: ""}), "Category");
-			this.getView().setModel(new JSONModel([{title: "Out of stock", key: false},{key: true, title: "Available"} ]), "Available");
+			this.getView().setModel(new JSONModel([{title: this.oBundle.getText("statusO"), key: false},{key: true, title: this.oBundle.getText("statusA")} ]), "Available");
 			this.getView().setModel(new JSONModel({title: "", description: "", picture: "", attributes: {width: "", height: "", length: "", weight: ""}, category: "", price: ""}), "Product");
 			this.getView().setModel(new JSONModel({title: "", description: "", picture: "", attributes: {width: "", height: "", length: "", weight: ""}, category: "", price: ""}), "ProductDisplay");
 			this.getView().setModel(new JSONModel([]), "Products");

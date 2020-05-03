@@ -207,6 +207,7 @@ sap.ui.define([
 								that.byId("loginDialog").close();
 								oModel.setProperty("/admin", result.user.admin);
 								oModel.setProperty("/login", result.user.username);
+								oModel.setProperty("/password", "");
 								oModel.setProperty("/token", "Token " + result.user.token);
 								oModel.setProperty("/id", result.user.id);
 								oModel.setProperty("/new_password", "");
@@ -256,6 +257,9 @@ sap.ui.define([
 
 		onLogoutButtonPress: function() {
 			this.byId("loginDialog").close();
+
+			this.setOrdersModel([]);
+			this.setOrderModel({});
 
 			var oModel = this.getView().getModel("Login");
 			oModel.setProperty("/token", "");

@@ -4,12 +4,7 @@ sap.ui.define([
 	"sap/ui/Device",
 	"../model/formatter",
 	"sap/m/MessageBox"
-], function(
-	BaseController,
-	JSONModel,
-	Device,
-	formatter,
-	MessageBox
+], function(BaseController, JSONModel, Device, formatter, MessageBox
 ) {
 	"use strict";
 

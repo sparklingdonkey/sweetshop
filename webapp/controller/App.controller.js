@@ -7,9 +7,7 @@ sap.ui.define([
 	return BaseController.extend("cart.controller.App", {
 
 		onInit : function () {
-			var oViewModel,
-				fnSetAppNotBusy,
-				iOriginalBusyDelay = this.getView().getBusyIndicatorDelay();
+			var oViewModel;
 
 			oViewModel = new JSONModel({
 				busy : false,
@@ -19,10 +17,6 @@ sap.ui.define([
 			});
 			this.setModel(oViewModel, "appView");
 			this.oBundle = this.getResourceBundle();
-			fnSetAppNotBusy = function() {
-				oViewModel.setProperty("/busy", false);
-				oViewModel.setProperty("/delay", iOriginalBusyDelay);
-			};
 
 			this.getView().setModel(new JSONModel({login: "", password: "", token: "", new_password: "", id: "", admin: false}), "Login");
 			this.getView().setModel(new JSONModel([]), "Categories");
@@ -33,10 +27,6 @@ sap.ui.define([
 			this.getView().setModel(new JSONModel([]), "Products");
 			this.getView().setModel(new JSONModel([]), "Orders");
 			this.getView().setModel(new JSONModel({}), "Order");
-
-			// since then() has no "reject"-path attach to the MetadataFailed-Event to disable the busy indicator in case of an error
-			// this.getOwnerComponent().getModel().metadataLoaded().then(fnSetAppNotBusy);
-			// this.getOwnerComponent().getModel().attachMetadataFailed(fnSetAppNotBusy);
 
 			// apply content density mode to root view
 			this.getView().addStyleClass(this.getOwnerComponent().getContentDensityClass());

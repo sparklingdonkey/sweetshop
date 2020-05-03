@@ -1,10 +1,9 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-	"sap/m/MessageToast",
 	"sap/ui/core/UIComponent",
 	"sap/ui/core/routing/History",
 	"../model/cart"
-], function(Controller, MessageToast, UIComponent, History, cart) {
+], function(Controller, UIComponent, History, cart) {
 	"use strict";
 
 	return Controller.extend("sap.ui.demo.cart.controller.BaseController", {
@@ -47,15 +46,6 @@ sap.ui.define([
 		getResourceBundle: function () {
 			return this.getOwnerComponent().getModel("i18n").getResourceBundle();
 		},
-
-		/**
-		//  * Handler for the Avatar button press event
-		//  * @public
-		//  */
-		// onAvatarPress: function () {
-		// 	var sMessage = this.getResourceBundle().getText("avatarButtonMessageToastText");
-		// 	MessageToast.show(sMessage);
-		// },
 
 		/**
 		 * React to FlexibleColumnLayout resize events

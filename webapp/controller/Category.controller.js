@@ -7,15 +7,7 @@ sap.ui.define([
 	"sap/m/MessageToast",
 	"sap/ui/model/json/JSONModel",
 	"sap/ui/core/Fragment"
-], function (
-	BaseController,
-	formatter,
-	Device,
-	Filter,
-	FilterOperator,
-	MessageToast,
-	JSONModel,
-	Fragment) {
+], function (BaseController, formatter, Device, Filter, FilterOperator, MessageToast, JSONModel, Fragment) {
 	"use strict";
 
 	return BaseController.extend("cart.controller.Category", {

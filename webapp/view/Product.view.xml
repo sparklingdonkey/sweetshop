@@ -35,8 +35,15 @@
 						text="{Login>/login}"
 						press=".onAvatarPress"
 						tooltip="{i18n>avatarButtonTooltip}"/>
+					<Button
+						icon="sap-icon://cart-approval"
+						press=".onOrdersPress"
+						text="{i18n>orders}"
+						visible="{Login>/admin}"
+						tooltip="{i18n>ordersButtonTooltip}"/>
 					<ToggleButton
 						icon="sap-icon://cart"
+						text="{i18n>cartTitle}"
 						pressed="{= ${appView>/layout}.startsWith('ThreeColumns') }"
 						tooltip="{i18n>toCartButtonTooltip}"
 						press=".onToggleCart">

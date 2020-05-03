@@ -1,0 +1,120 @@
+<mvc:View
+	controllerName="cart.controller.Product"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc">
+	<Page
+		id="page"
+		backgroundDesign="Solid">
+		<landmarkInfo>
+			<PageAccessibleLandmarkInfo
+				rootRole="Region"
+				rootLabel="{i18n>Product_rootLabel}"
+				contentRole="Main"
+				contentLabel="{i18n>Product_contentLabel}"
+				headerRole="Region"
+				headerLabel="{i18n>Product_headerLabel}"
+				footerRole="Region"
+				footerLabel="{i18n>Product_footerLabel}"/>
+		</landmarkInfo>
+		<customHeader>
+			<Bar>
+				<contentLeft>
+					<Button
+						type="Back"
+						visible="{appView>/smallScreenMode}"
+						press=".onBack"/>
+				</contentLeft>
+				<contentMiddle>
+					<Title
+						level="H2"
+						text="{ProductDisplay>/title}"/>
+				</contentMiddle>
+				<contentRight>
+					<Button
+						icon="sap-icon://customer"
+						text="{Login>/login}"
+						press=".onAvatarPress"
+						tooltip="{i18n>avatarButtonTooltip}"/>
+					<ToggleButton
+						icon="sap-icon://cart"
+						pressed="{= ${appView>/layout}.startsWith('ThreeColumns') }"
+						tooltip="{i18n>toCartButtonTooltip}"
+						press=".onToggleCart">
+					</ToggleButton>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button
+					text="Delete"
+					type="Reject"
+					visible="{Login>/admin}"
+					press=".onProductDeletePress" />
+				<Button
+					text="{i18n>addToCartShort}"
+					type="Emphasized"
+					press=".onAddToCart" />
+			</Toolbar>
+		</footer>
+		<content>
+			<ObjectHeader
+				title="{ProductDisplay>/title}"
+				titleLevel="H3"
+				number="{
+					path : 'ProductDisplay>/price',
+					formatter : '.formatter.price'
+				}"
+				numberUnit="BYN">
+				<attributes>
+					<ObjectAttribute
+						title="Category"
+						text="{ProductDisplay>/category/title}"/>
+					<ObjectAttribute
+						title="{i18n>productDescriptionAttributeText}"
+						text="{ProductDisplay>/description}"/>
+					<ObjectAttribute
+						title="{i18n>productWeightAttributeText}"
+						text="{ProductDisplay>/attributes/weight} KG"/>
+					<ObjectAttribute
+						title="{i18n>productMeasuresAttributeText}"
+						text="{ProductDisplay>/attributes/length} cm, {ProductDisplay>/attributes/height} cm, {ProductDisplay>/attributes/width} cm"/>
+				</attributes>
+				<statuses>
+					<ObjectStatus
+						text="{
+							path : 'ProductDisplay>/available',
+							formatter : '.formatter.statusText'
+						}"
+						state="{
+							path : 'ProductDisplay>/available',
+							formatter : '.formatter.statusState'
+						}"/>
+				</statuses>
+			</ObjectHeader>
+			<VBox
+				alignItems="Center"
+				renderType="Div">
+				<Image
+					id="productImage"
+					src="{path : 'ProductDisplay>/picture', formatter : '.formatter.pictureUrl'}"
+					decorative="false"
+					densityAware="false"
+					class="sapUiSmallMargin"
+					width="600px"
+					height="400px">
+					<detailBox>
+						<LightBox id="lightBox">
+							<imageContent>
+								<LightBoxItem
+									imageSrc="{path : 'ProductDisplay>/picture', formatter : '.formatter.pictureUrl'}"
+									title="{Name}"/>
+							</imageContent>
+						</LightBox>
+					</detailBox>
+				</Image>
+			</VBox>
+		</content>
+	</Page>
+</mvc:View>

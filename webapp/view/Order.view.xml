@@ -1,0 +1,85 @@
+<mvc:View
+	controllerName="cart.controller.Order"
+	xmlns="sap.m"
+    xmlns:form="sap.ui.layout.form"
+	xmlns:mvc="sap.ui.core.mvc">
+	<Page
+		id="page"
+		title="Order"
+		backgroundDesign="Solid"
+		navButtonPress=".onBack">
+		<content>
+            <List
+				id="orderList"
+				noDataText="No products"
+				items="{
+					path : 'Order>/products',
+					sorter : {
+						path : 'title',
+						descending : false
+					}
+				}">
+				<items>
+					<ObjectListItem
+						intro="{Order>quantity} x"
+						icon="{
+							path : 'Order>picture',
+							formatter : '.formatter.pictureUrl'
+						}"
+						title="{Order>title}"
+						number="{
+							path : 'Order>totalPrice',
+							formatter : '.formatter.price'
+						}"
+						numberUnit="BYN"
+						press=".onEntryListPress"
+						iconDensityAware="false">
+						<firstStatus>
+							<ObjectStatus
+								text="{
+									path : 'cartProducts>available',
+									formatter : '.formatter.statusText'
+								}"
+								state="{
+									path : 'cartProducts>available',
+									formatter : '.formatter.statusState'
+								}"/>
+						</firstStatus>
+					</ObjectListItem>
+				</items>
+			</List>
+            <form:SimpleForm
+                editable="false"
+                layout="ResponsiveGridLayout">
+                <form:content>
+                    <Label text="Payment type"/>
+                    <Text text="{Order>/paymentInfo/SelectedPayment}"/>
+                    <Label text="Delivery Method"/>
+                    <Text text="{Order>/paymentInfo/SelectedDeliveryMethod}"/>
+                    <Label text="Adress"/>
+                    <Text text="{Order>/paymentInfo/InvoiceAddress/Address}"/>
+                    <Label text="City"/>
+                    <Text text="{Order>/paymentInfo/InvoiceAddress/City}"/>
+                    <Label text="Country"/>
+                    <Text text="{Order>/paymentInfo/InvoiceAddress/Country}"/>
+                    <Label text="ZipCode"/>
+                    <Text text="{Order>/paymentInfo/InvoiceAddress/ZipCode}"/>
+                </form:content>
+            </form:SimpleForm>
+		</content>
+        <footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button
+					text="Delete"
+					type="Reject"
+					visible="{Login>/admin}"
+					press=".onOrderDeletePress" />
+				<Button
+					text="Approve"
+					type="Emphasized"
+					press=".onApprove" />
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>

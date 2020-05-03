@@ -1,0 +1,34 @@
+<mvc:View
+	controllerName="cart.controller.Orders"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc">
+	<Page
+		id="page"
+		title="Orders"
+		backgroundDesign="Solid"
+		showNavButton="true"
+		navButtonPress=".onBack">
+		<content>
+            <List
+				id="ordersList"
+				mode="{= ${device>/system/phone} ? 'None' : 'SingleSelectMaster'}"
+				delete=".onCartEntriesDelete"
+				selectionChange=".onOrderSelect"
+				items="{
+					path : 'Orders>/'
+				}">
+				<items>
+					<ObjectListItem
+						intro="{Orders>totalAmount}"
+						type="{cfg>/listItemType}"
+						title="{Orders>_id}"
+						number="{Orders>totalPrice}"
+						numberUnit="BYN"
+						press=".onEntryListPress"
+						iconDensityAware="false">
+					</ObjectListItem>
+				</items>
+			</List>
+		</content>
+	</Page>
+</mvc:View>

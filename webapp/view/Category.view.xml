@@ -4,7 +4,6 @@
 	xmlns:mvc="sap.ui.core.mvc">
 	<Page
 		id="page"
-		title="{CategoryName}"
 		backgroundDesign="Solid"
 		showNavButton="true"
 		navButtonPress=".onBack">
@@ -25,10 +24,6 @@
 				icon="sap-icon://add"
 				visible="{Login>/admin}"
 				press=".onProductAddPress"/>
-			<!-- <Button
-				id="masterListFilterButton"
-				icon="sap-icon://filter"
-				press=".onFilter"/> -->
 		</headerContent>
 		<content>
 			<List
@@ -64,17 +59,13 @@
 						number="{
 							path : 'Products>price'
 						}"
-						numberUnit="BYN"
+						numberUnit="{i18n>currency}"
 						detailPress="onProductEditPress"
 						iconDensityAware="false"
-						tooltip="{i18n>openProductDetails} {Name}">
+						tooltip="{i18n>openProductDetails}">
 						<attributes>
 							<ObjectAttribute visible="true"
 											 text="{Products>category/title}"/>
-							<!-- <ObjectAttribute visible="{device>/system/desktop}"
-											 active="true"
-											 text="{i18n>CompareWith}"
-											 press=".compareProducts"/> -->
 						</attributes>
 						<firstStatus>
 							<ObjectStatus

@@ -8,31 +8,25 @@
             contentWidth="450px"
             contentHeight="auto"
             draggable="true"
-            title="{
-                        parts: [
-    			    'i18n>createNote',
-    			    'config>/tabName'
-			    ],
-			    formatter: 'jQuery.sap.formatMessage'
-	        }">
+            title="{i18n>categoryAction}">
 		<content>
                         <Label
-                                text="Category title"
+                                text="{i18n>categoryName}"
                                 required="true"
                                 labelFor="categoryTitleInput" />
 			<Input 
                                 id="categoryTitleInput"
-                                placeholder="Enter category name ..."
+                                placeholder="{i18n>categoryTitleText}"
 			        value="{Category>/title}"
 			        width="100%" />    
                         <Label
-                                text="Category description"
+                                text="{i18n>categoryDescription}"
                                 labelFor="categoryDescriptionInput" />
                         <TextArea
                                 id="categoryDescriptionInput"
 			        enabled="true" 
 			        rows="8" 
-				placeholder="Enter category description ..."
+				placeholder="{i18n>categoryDescriptionText}"
 			        value="{Category>/description}"
 			        width="100%" />     		
         </content>
@@ -40,11 +34,7 @@
             <Button 
                     press="onCategorySaveButtonPress"
                     type="Accept"
-                    text="Save" />
-            <Button 
-                    press="onCategoryDeleteButtonPress"
-                    icon="sap-icon://delete"
-                    text="Delete" /> 
+                    text="{i18n>save}" />
         </buttons>
     </Dialog>
 </core:FragmentDefinition>

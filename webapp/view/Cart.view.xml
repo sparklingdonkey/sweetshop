@@ -131,12 +131,12 @@
 					<ObjectListItem
 						type="{cfg>/listItemType}"
 						icon="{
-							path : 'cartProducts>PictureUrl',
+							path : 'cartProducts>picture',
 							formatter : '.formatter.pictureUrl'
 						}"
 						title="{cartProducts>title}"
 						number="{
-							path : 'cartProducts>Price',
+							path : 'cartProducts>price',
 							formatter : '.formatter.price'
 						}"
 						numberUnit="{i18n>currency}"
@@ -151,11 +151,11 @@
 						<firstStatus>
 							<ObjectStatus
 								text="{
-									path : 'cartProducts>Status',
+									path : 'cartProducts>available',
 									formatter : '.formatter.statusText'
 								}"
 								state="{
-									path : 'cartProducts>Status',
+									path : 'cartProducts>available',
 									formatter : '.formatter.statusState'
 								}"/>
 						</firstStatus>

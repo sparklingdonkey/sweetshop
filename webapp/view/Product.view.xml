@@ -107,6 +107,7 @@
 					src="{path : 'ProductDisplay>/picture', formatter : '.formatter.pictureUrl'}"
 					decorative="false"
 					densityAware="false"
+					visible="{= !!${ProductDisplay>/picture}}"
 					class="sapUiSmallMargin"
 					width="600px"
 					height="400px">

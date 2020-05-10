@@ -12,7 +12,6 @@ sap.ui.define([
 
 	return BaseController.extend("cart.controller.Category", {
 		formatter : formatter,
-		// Define filterPreviousValues as global variables because they need to be accessed from different functions
 		_iLowFilterPreviousValue: 0,
 		_iHighFilterPreviousValue: 5000,
 
@@ -34,7 +33,6 @@ sap.ui.define([
 			var bSmallScreen = this.getModel("appView").getProperty("/smallScreenMode"),
 				sRouteName = oEvent.getParameter("name");
 			var sId = oEvent.getParameters().arguments.id;
-			// switch to first column in full screen mode for category route on small devices
 			this._setLayout(bSmallScreen && sRouteName === "category" ? "One" : "Two");
 			var that = this;
 			if (!this.getView().getModel("Categories").getData().length) {
@@ -86,7 +84,6 @@ sap.ui.define([
 					name: "cart.fragments.productEditDialog",
 					controller: this
 				}).then(function(oDialog){
-					// connect dialog to the root view of this component (models, lifecycle)
 					this.getView().addDependent(oDialog);
 					oDialog.addStyleClass(this.getOwnerComponent().getContentDensityClass());
 					oDialog.open();
@@ -207,10 +204,7 @@ sap.ui.define([
 
 		},
 
-		/**
-		 * Create a unique array of suppliers to be used in the supplier flter option
-		 * @private
-		 */
+	
 		_loadSuppliers: function () {
 			
 		},
@@ -226,19 +220,9 @@ sap.ui.define([
 			}.bind(this));
 		},
 
-		/**
-		 * Event handler to determine which list item is selected
-		 * @param {sap.ui.base.Event} oEvent the list select event
-		 */
 		onProductListSelect : function (oEvent) {
 			this._showProduct(oEvent);
 		},
-
-		/**
-		 * Event handler to determine which sap.m.ObjectListItem is pressed
-		 * @param {sap.ui.base.Event} oEvent the sap.m.ObjectListItem press event
-		 */
-
 
 		onProductDetails: function (oEvent) {
 			var oBindContext;
@@ -251,7 +235,6 @@ sap.ui.define([
 			var sCategoryId = oModel.getProperty(oBindContext.getPath()).category._id;
 			var sProductId = oModel.getProperty(oBindContext.getPath())._id;
 
-			// keep the cart context when showing a product
 			var bCartVisible = this.getModel("appView").getProperty("/layout").startsWith("Three");
 			this._setLayout("Two");
 			this._oRouter.navTo(bCartVisible ? "productCart" : "product", {
@@ -275,7 +258,6 @@ sap.ui.define([
 					name: "cart.fragments.productEditDialog",
 					controller: this
 				}).then(function(oDialog){
-					// connect dialog to the root view of this component (models, lifecycle)
 					this.getView().addDependent(oDialog);
 					oDialog.addStyleClass(this.getOwnerComponent().getContentDensityClass());
 					oDialog.open();
@@ -285,10 +267,6 @@ sap.ui.define([
 			}
 		},
 
-		/**
-		 * Updates the previous slider values
-		 * @param {sap.ui.base.Event} oEvent the press event of the sap.m.Button
-		 */
 		handleConfirm: function (oEvent) {
 			var oCustomFilter = this.byId("categoryFilterDialog").getFilterItems()[1];
 			var oSlider = oCustomFilter.getCustomControl().getAggregation("content")[0];

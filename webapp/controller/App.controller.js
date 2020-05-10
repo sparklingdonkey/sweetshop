@@ -28,7 +28,6 @@ sap.ui.define([
 			this.getView().setModel(new JSONModel([]), "Orders");
 			this.getView().setModel(new JSONModel({}), "Order");
 
-			// apply content density mode to root view
 			this.getView().addStyleClass(this.getOwnerComponent().getContentDensityClass());
 		}
 

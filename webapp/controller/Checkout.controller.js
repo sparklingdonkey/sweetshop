@@ -68,25 +68,18 @@ sap.ui.define([
 
 			this.setModel(oModel);
 
-			// previously selected entries in wizard
 			this._oHistory = {
 				prevPaymentSelect: null,
 				prevDiffDeliverySelect: null
 			};
 
-			// Assign the model object to the SAPUI5 core
 			this.setModel(sap.ui.getCore().getMessageManager().getMessageModel(), "message");
 
-			// switch to single column view for checout process
 			this.getRouter().getRoute("checkout").attachMatched(function () {
 				this._setLayout("One");
 			}.bind(this));
 		},
 
-		/**
-		 * Only validation on client side, does not involve a back-end server.
-		 * @param {sap.ui.base.Event} oEvent Press event of the button to display the MessagePopover
-		 */
 		onShowMessagePopoverPress: function (oEvent) {
 			var oButton = oEvent.getSource();
 
@@ -96,9 +89,6 @@ sap.ui.define([
 				target: "_blank"
 			});
 
-			/**
-			 * Gather information that will be visible on the MessagePopover
-			 */
 			var oMessageTemplate = new MessagePopoverItem({
 				type: '{message>type}',
 				title: '{message>message}',
@@ -122,14 +112,10 @@ sap.ui.define([
 			oMessagePopover.openBy(oButton);
 		},
 
-		//To be able to stub the addDependent function in unit test, we added it in a separate function
 		_addDependent: function (oMessagePopover) {
 			this.getView().addDependent(oMessagePopover);
 		},
 
-		/**
-		 * Shows next WizardStep according to user selection
-		 */
 		goToPaymentStep: function () {
 			var selectedKey = this.getModel().getProperty("/SelectedPayment");
 			var oElement = this.byId("paymentTypeStep");
@@ -147,9 +133,6 @@ sap.ui.define([
 			}
 		},
 
-		/**
-		 * Shows warning message if user changes previously selected payment method
-		 */
 		setPaymentMethod: function () {
 			this._setDiscardableProperty({
 				message: this.getResourceBundle().getText("checkoutControllerChangePayment"),
@@ -159,9 +142,6 @@ sap.ui.define([
 			});
 		},
 
-		/**
-		 * Shows warning message if user changes previously selected delivery address
-		 */
 		setDifferentDeliveryAddress: function () {
 			this._setDiscardableProperty({
 				message: this.getResourceBundle().getText("checkoutControllerChangeDelivery"),
@@ -171,10 +151,6 @@ sap.ui.define([
 			});
 		},
 
-		/**
-		 * Called from WizardStep "invoiceStep"
-		 * shows next WizardStep "DeliveryAddressStep" or "DeliveryTypeStep" according to user selection
-		 */
 		invoiceAddressComplete: function () {
 			var sNextStepId = (this.getModel().getProperty("/DifferentDeliveryAddress"))
 				? "deliveryAddressStep"
@@ -183,43 +159,24 @@ sap.ui.define([
 
 		},
 
-		/**
-		 * Called from <code>ordersummary</code>
-		 * shows warning message and cancels order if confirmed
-		 */
 		handleWizardCancel: function () {
 			var sText = this.getResourceBundle().getText("checkoutControllerAreYouSureCancel");
 			this._handleSubmitOrCancel(sText, "warning", "home");
 		},
 
-		/**
-		 * Called from <code>ordersummary</code>
-		 * shows warning message and submits order if confirmed
-		 */
 		handleWizardSubmit: function () {
 			var sText = this.getResourceBundle().getText("checkoutControllerAreYouSureSubmit");
 			this._handleSubmitOrCancel(sText, "confirm", "ordercompleted");
 		},
 
-		/**
-		 * Called from <code>_handleSubmitOrCancel</code>
-		 * resets Wizard after submitting or canceling order
-		 */
 		backToWizardContent: function () {
 			this.byId("wizardNavContainer").backToPage(this.byId("wizardContentPage").getId());
 		},
 
-		/**
-		 * Removes validation error messages from the previous step
-		 */
 		_clearMessages: function () {
 			sap.ui.getCore().getMessageManager().removeAllMessages();
 		},
 
-		/**
-		 * Checks the corresponding step after activation to decide whether the user can proceed or needs
-		 * to correct the input
-		 */
 		onCheckStepActivation: function(oEvent) {
 			this._clearMessages();
 			var sWizardStepId = oEvent.getSource().getId();
@@ -239,40 +196,22 @@ sap.ui.define([
 			}
 		},
 
-		/**
-		 * Validates the credit card step initially and after each input
-		 */
 		checkCreditCardStep: function () {
 			this._checkStep("creditCardStep", ["creditCardHolderName", "creditCardNumber", "creditCardSecurityNumber", "creditCardExpirationDate"]);
 		},
 
-		/**
-		 * Validates the cash on delivery step initially and after each input
-		 */
 		checkCashOnDeliveryStep: function () {
 			this._checkStep("cashOnDeliveryStep", ["cashOnDeliveryName", "cashOnDeliveryLastName", "cashOnDeliveryPhoneNumber", "cashOnDeliveryEmail"]);
 		},
 
-		/**
-		 * Validates the invoice step initially and after each input
-		*/
 		checkInvoiceStep: function () {
 			this._checkStep("invoiceStep", ["invoiceAddressAddress", "invoiceAddressCity", "invoiceAddressZip", "invoiceAddressCountry"]);
 		},
 
-		/**
-		 * Validates the delivery address step initially and after each input
-		 */
 		checkDeliveryAddressStep: function () {
 			this._checkStep("deliveryAddressStep", ["deliveryAddressAddress", "deliveryAddressCity", "deliveryAddressZip", "deliveryAddressCountry"]);
 		},
 
-		/**
-		 * Checks if one or more of the inputs are empty
-		 * @param {array} aInputIds - Input ids to be checked
-		 * @returns {boolean}
-		 * @private
-		 */
 		_checkInputFields : function (aInputIds) {
 			var oView = this.getView();
 
@@ -288,12 +227,6 @@ sap.ui.define([
 			});
 		},
 
-		/**
-		 * Hides button to proceed to next WizardStep if validation conditions are not fulfilled
-		 * @param {string} sStepName - the ID of the step to be checked
-		 * @param {array} aInputIds - Input IDs to be checked
-		 * @private
-		 */
 		_checkStep: function (sStepName, aInputIds) {
 			var oWizard = this.byId("shoppingCartWizard"),
 				oStep = this.byId(sStepName),
@@ -307,10 +240,7 @@ sap.ui.define([
 			}
 		},
 
-		/**
-		 * Called from  Wizard on <code>complete</code>
-		 * Navigates to the summary page in case there are no errors
-		 */
+
 		checkCompleted: function () {
 			if (sap.ui.getCore().getMessageManager().getMessageModel().getData().length > 0) {
 				MessageBox.error(this.getResourceBundle().getText("popOverMessageText"));
@@ -319,22 +249,11 @@ sap.ui.define([
 			}
 		},
 
-		/**
-		 * navigates to "home" for further shopping
-		 */
 		onReturnToShopButtonPress: function () {
 			this._setLayout("Two");
 			this.getRouter().navTo("home");
 		},
 
-		// *** the following functions are private "helper" functions ***
-
-		/**
-		 * Called from both <code>setPaymentMethod</code> and <code>setDifferentDeliveryAddress</code> functions.
-		 * Shows warning message if user changes previously selected choice
-		 * @private
-		 * @param {Object} oParams Object containing message text, model path and WizardSteps
-		 */
 		_setDiscardableProperty: function (oParams) {
 			var oWizard = this.byId("shoppingCartWizard");
 			if (oWizard.getProgressStep() !== oParams.discardStep) {
@@ -355,21 +274,12 @@ sap.ui.define([
 			}
 		},
 
-		/**
-		 * Called from <code>handleWizardCancel</code> and <code>handleWizardSubmit</code> functions.
-		 * Shows warning message, resets shopping cart and wizard if confirmed and navigates to given route
-		 * @private
-		 * @param {string} sMessage message text
-		 * @param {string} sMessageBoxType message box type (e.g. warning)
-		 * @param {string} sRoute route to navigate to
-		 */
 		_handleSubmitOrCancel: function (sMessage, sMessageBoxType, sRoute) {
 			MessageBox[sMessageBoxType](sMessage, {
 				actions: [MessageBox.Action.YES,
 					MessageBox.Action.NO],
 				onClose: function (oAction) {
 					if (oAction === MessageBox.Action.YES) {
-						// resets Wizard
 						var oWizard = this.byId("shoppingCartWizard");
 						var oModel = this.getModel();
 						var oCartModel = this.getOwnerComponent().getModel("cartProducts");
@@ -382,7 +292,6 @@ sap.ui.define([
 						aProducts.forEach(function(sPrd) {
 							aQuantity.push(oCartModel.getData().cartEntries[sPrd].Quantity);
 						});
-						console.log()
 						this.post("http://127.0.0.1:8080/api/orders", {
 							body: JSON.stringify({products: aProducts, productsQuantity: aQuantity, paymentInfo: JSON.stringify(oModelData)})
 						});
@@ -394,7 +303,6 @@ sap.ui.define([
 						oModelData.DeliveryAddress = {};
 						oModelData.CreditCard = {};
 						oModel.setData(oModelData);
-						//all relevant cart properties are set back to default. Content is deleted.
 						var oCartModelData = oCartModel.getData();
 						oCartModelData.cartEntries = {};
 						oCartModelData.totalPrice = 0;
@@ -405,23 +313,12 @@ sap.ui.define([
 			});
 		},
 
-		/**
-		 * gets customData from ButtonEvent
-		 * and navigates to WizardStep
-		 * @private
-		 * @param {sap.ui.base.Event} oEvent the press event of the button
-		 */
 		_navBackToStep: function (oEvent) {
 			var sStep = oEvent.getSource().data("navBackTo");
 			var oStep = this.byId(sStep);
 			this._navToWizardStep(oStep);
 		},
 
-		/**
-		 * navigates to WizardStep
-		 * @private
-		 * @param {Object} oStep WizardStep DOM element
-		 */
 		_navToWizardStep: function (oStep) {
 			var oNavContainer = this.byId("wizardNavContainer");
 			var _fnAfterNavigate = function () {

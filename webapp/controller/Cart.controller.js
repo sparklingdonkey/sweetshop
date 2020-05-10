@@ -20,7 +20,6 @@ sap.ui.define([
 			this._oRouter.getRoute("cart").attachPatternMatched(this._routePatternMatched, this);
 			this._oRouter.getRoute("productCart").attachPatternMatched(this._routePatternMatched, this);
 			this._oRouter.getRoute("comparisonCart").attachPatternMatched(this._routePatternMatched, this);
-			// set initial ui configuration model
 			var oCfgModel = new JSONModel({});
 			this.getView().setModel(oCfgModel, "cfg");
 			this._toggleCfgModel();
@@ -39,12 +38,11 @@ sap.ui.define([
 			this._setLayout("Three");
 			var oCartModel = this.getModel("cartProducts");
 			var oCartEntries = oCartModel.getProperty("/cartEntries");
-			//enables the proceed and edit buttons if the cart has entries
 			if (Object.keys(oCartEntries).length > 0) {
 				oCartModel.setProperty("/showProceedButton", true);
 				oCartModel.setProperty("/showEditButton", true);
 			}
-			//set selection of list back
+
 			var oEntryList = this.byId("entryList");
 			oEntryList.removeSelections();
 		},
@@ -111,20 +109,15 @@ sap.ui.define([
 			var oCartModel = oBindingContext.getModel();
 			var oProduct = oBindingContext.getObject();
 			var oModelData = oCartModel.getData();
-			// why are the items cloned? - the JSON model checks if the values in the object are changed.
-			// if we do our modifications on the same reference, there will be no change detected.
-			// so we modify after the clone.
+
 			var oListToAddItem = Object.assign({}, oModelData[sListToAddItem]);
 			var oListToDeleteItem = Object.assign({}, oModelData[sListToDeleteItem]);
 			var sProductId = oProduct._id;
 
-			// find existing entry for product
 			if (oListToAddItem[sProductId] === undefined) {
-				// copy new entry
 				oListToAddItem[sProductId] = Object.assign({}, oProduct);
 			}
 
-			//Delete the saved Product from cart
 			delete oListToDeleteItem[sProductId];
 			oCartModel.setProperty("/" + sListToAddItem, oListToAddItem);
 			oCartModel.setProperty("/" + sListToDeleteItem, oListToDeleteItem);
@@ -133,7 +126,6 @@ sap.ui.define([
 		_showProduct: function (oItem) {
 			var oEntry = oItem.getBindingContext(sCartModelName).getObject();
 
-			// close cart when showing a product on phone
 			var bCartVisible = false;
 			if (!Device.system.phone) {
 				bCartVisible = this.getModel("appView").getProperty("/layout").startsWith("Three");
@@ -167,7 +159,6 @@ sap.ui.define([
 			var sEntryId = oBindingContext.getObject()._id;
 			var oBundle = this.getResourceBundle();
 
-			// show confirmation dialog
 			MessageBox.show(oBundle.getText("cartDeleteDialogMsg"), {
 				title: oBundle.getText("cartDeleteDialogTitle"),
 				actions: [
@@ -183,7 +174,6 @@ sap.ui.define([
 
 					delete oCollectionEntries[sEntryId];
 
-					// update model
 					oCartModel.setProperty("/" + sCollection, Object.assign({}, oCollectionEntries));
 				}
 			});

@@ -1,10 +1,10 @@
-var mongoose = require('mongoose');
-var uniqueValidator = require('mongoose-unique-validator');
-var crypto = require('crypto');
-var jwt = require('jsonwebtoken');
-var secret = require('../config').secret;
+let mongoose = require('mongoose');
+let uniqueValidator = require('mongoose-unique-validator');
+let crypto = require('crypto');
+let jwt = require('jsonwebtoken');
+let secret = require('../config').secret;
 
-var CategorySchema = new mongoose.Schema({
+let CategorySchema = new mongoose.Schema({
     // slug: {type: String, lowercase: true, unique: true, },
     title: {type: String, required: [true, "cannot be empty."]},
     description: String,

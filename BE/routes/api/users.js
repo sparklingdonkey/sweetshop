@@ -1,11 +1,11 @@
-var mongoose = require('mongoose');
-var router = require('express').Router();
-var auth = require('../auth');
-var User = mongoose.model('User');
-var passport = require('passport');
+let mongoose = require('mongoose');
+let router = require('express').Router();
+let auth = require('../auth');
+let User = mongoose.model('User');
+let passport = require('passport');
 
 router.post('/users', function(req,res,next){
-    var user = new User();
+    let user = new User();
     
     if (req.body.user.username === "admin") {
         user.isAdmin = true;
@@ -57,19 +57,6 @@ router.get('/user', auth.required, function(req,res,next){
 
 router.put('/user', auth.required, function(req,res,next){
     User.findById(req.body.user.id).then(function(user){
-        // if(typeof req.body.user.username !== 'undefined'){
-        //     user.username = req.body.user.username;
-        // }
-        // if(typeof req.body.user.email !== 'undefined'){
-        //     user.email = req.body.user.email;
-        // }
-        // if(typeof req.body.user.bio !== 'undefined'){
-        //     user.bio = req.body.user.bio;
-        // }
-        // if(typeof req.body.user.image !== 'undefined'){
-        //     user.image = req.body.user.image;
-        // }
-
         if(!user || !req.body.user.new_password.length || !user.validPassword(req.body.user.password)) {
             return done(null, false, {errors: {"email or password":"is invalid."}})
         }

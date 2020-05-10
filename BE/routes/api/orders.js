@@ -1,11 +1,11 @@
-var mongoose = require('mongoose');
-var router = require('express').Router();
-var auth = require('../auth');
-var passport = require('passport');
-var Category = mongoose.model('Category');
-var User = mongoose.model('User');
-var Product = mongoose.model('Product');
-var Order = mongoose.model('Order');
+let mongoose = require('mongoose');
+let router = require('express').Router();
+let auth = require('../auth');
+let passport = require('passport');
+let Category = mongoose.model('Category');
+let User = mongoose.model('User');
+let Product = mongoose.model('Product');
+let Order = mongoose.model('Order');
 
 router.get('/orders', auth.required, function(req, res, next) {  
     if (req.headers && req.headers.authorization && req.payload && req.payload.id) {
@@ -66,11 +66,8 @@ router.delete("/orders", auth.required, function(req, res, next) {
 });
 
 router.post('/orders', function(req, res, next) {
-    // if (req.headers && req.headers.authorization && req.payload && req.payload.id) {
-    //   User.findById(req.payload.id).then(function(user) {
-        // if (user) {
           let data = req.body;
-          var order = new Order({ 
+          let order = new Order({ 
             products: data.products,
             productsQuantity: data.productsQuantity,
             paymentInfo: data.paymentInfo,
@@ -80,15 +77,6 @@ router.post('/orders', function(req, res, next) {
           order.save().then(function(order){          
               res.json({results: [order]});
           }).catch(next);
-    //     } else {
-    //       return res.sendStatus(401);
-    //     }
-    //   });
-    // } else {
-    //   return res.sendStatus(401);
-    // }
   });
   
-  
-
 module.exports = router;

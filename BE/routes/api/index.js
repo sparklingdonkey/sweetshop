@@ -6,5 +6,4 @@ router.use('/', require('./currency'));
 router.use('/', require('./users'));
 router.use('/', require('./orders'));
 
-
 module.exports = router;

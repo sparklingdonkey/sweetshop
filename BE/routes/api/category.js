@@ -1,10 +1,9 @@
-var router = require('express').Router();
-var mongoose = require('mongoose');
-var auth = require('../auth');
-var Category = mongoose.model('Category');
-var User = mongoose.model('User');
+let router = require('express').Router();
+let mongoose = require('mongoose');
+let auth = require('../auth');
+let Category = mongoose.model('Category');
+let User = mongoose.model('User');
 
-// return a list of tags
 router.get('/category', function(req, res, next) {
     Category.find().then(function(categories){
         return res.json({results: categories});
@@ -19,7 +18,7 @@ router.post('/category', auth.required, function(req, res, next) {
                     if (dublicated.length) {
                         return res.status(409).json({errors: {title: "already taken"}});
                     } else {
-                        var category = new Category(req.body.category);
+                        let category = new Category(req.body.category);
                         return category.save().then(function(){
                             return res.json({results: [category]});
                         });
